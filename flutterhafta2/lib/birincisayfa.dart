@@ -10,7 +10,7 @@ class BirinciSayfa extends StatefulWidget {
 
 class _BirinciSayfaState extends State<BirinciSayfa> {
 
-  Color _backgroundColor = Colors.blue.shade700;
+  Color _backgroundColor = Colors.white;
 
   void _arkaplandegistir() {
 
@@ -23,7 +23,7 @@ class _BirinciSayfaState extends State<BirinciSayfa> {
    const snackbar=SnackBar(content:Text("Merhaba Flutter!!"));
    ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
-
+final url="https://cmspanel.tvplus.com.tr/uploads/marvel0_5_005fa9e70c.jpg";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,28 +45,47 @@ class _BirinciSayfaState extends State<BirinciSayfa> {
             Padding(
               padding: const EdgeInsets.all(30.0),
               child: Image.network(
-                  "https://cmspanel.tvplus.com.tr/uploads/marvel0_5_005fa9e70c.jpg"),
+                 url ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                    onPressed: _arkaplandegistir,
-                    child: Text(
-                      "Arka Plan Rengini Değiştir",
-                      style: TextStyle(color: Colors.black),
-                    )),
-                IconButton(
-                  onPressed: _mesajgoster,
-                  icon: Icon(Icons.message),
-                  iconSize: 30.0,
-                  color: Colors.red,
-                ),
-                ElevatedButton(onPressed:(){
-                 Navigator.push(context, MaterialPageRoute(builder: (context)=>IkinciSayfa()));
-                }, child: Text("Diğer Sayfaya Git"))
-              ],
-
+            Container(
+              padding: EdgeInsets.all(30.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 60,
+                      child: ElevatedButton(
+                          onPressed: _arkaplandegistir,
+                          child: Text(
+                            "Arka Plan Rengini Değiştir",
+                            style: TextStyle(color: Colors.purple),
+                          )),
+                    ),
+                  ),
+              
+                  Expanded(
+                    child: Container(
+                      height: 60,
+                      child: ElevatedButton(onPressed:(){
+                       Navigator.push(context, MaterialPageRoute(builder: (context)=>IkinciSayfa()));
+                      }, child: Text("Diğer Sayfaya Git",style: TextStyle(color: Colors.purple),)),
+                    ),
+                  ),
+                    Expanded(
+                    child: Container(
+                      height: 60,
+                      child: IconButton(
+                        onPressed: _mesajgoster,
+                        icon: Icon(Icons.message),
+                        iconSize: 30.0,
+                        color: Colors.purple,
+                      ),
+                    ),
+                  ),
+                ],
+              
+              ),
             ),
           ],
         ),
