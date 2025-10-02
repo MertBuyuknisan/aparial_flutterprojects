@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterhafta2/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'ucuncusayfa.dart';
 
 class IkinciSayfa extends StatefulWidget {
   const IkinciSayfa({super.key});
@@ -21,14 +22,14 @@ class _IkinciSayfaState extends State<IkinciSayfa> {
 
   @override
   void dispose() {
-    textEditingController.dispose();
     super.dispose();
+    textEditingController.dispose();
+    
   }
 
   Future<void> _loadData() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      // Kayıtlı veriyi hem yerel değişkene hem de global notifier'a yükle
       _karanlikMode = prefs.getBool('karanlikMod') ?? false;
       themeNotifier.value = _karanlikMode ? ThemeMode.dark : ThemeMode.light;
       textEditingController.text = prefs.getString('name') ?? '';
@@ -80,7 +81,13 @@ class _IkinciSayfaState extends State<IkinciSayfa> {
             const SizedBox(
               height: 20,
             ),
-            ElevatedButton(onPressed: _verileriKaydet, child: const Text("Kaydet"))
+            ElevatedButton(onPressed: _verileriKaydet, child: const Text("Kaydet")),
+            ElevatedButton(
+              onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder:(context)=>UcuncuSayfa()),
+                  );
+              }, child:Text("Kullanıcı Listesine Git")
+              ),
           ],
         ),
       ),
